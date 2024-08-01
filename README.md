@@ -8,7 +8,7 @@ Project scrap all data on webpage Glamira category
  * Earring
  * Apple Watch Case 
 
-
+> Using CrawlerProcess to run multi spiders in one process, it takes ~ 10hrs to scrap 10Gbs from website
 
 
 
@@ -16,7 +16,7 @@ Project scrap all data on webpage Glamira category
 ## How to use
 
 1. Git clone project
-2. chmod +x run.sh ( allow file execute permisson )
+2. chmod +x run.sh ( to allow file execute permisson )
 3. run ./run.sh 
     * Create .venv 
     * Install neccessary module from requirement.txt
@@ -35,5 +35,5 @@ scrapy crawl [spider_name] -O data.json --logfile scrapy_log.log
 
 
 
-> Using CrawlerProcess to run multi spiders in one process, it takes ~ 10hrs to scrap 10Gbs from website
+
 
