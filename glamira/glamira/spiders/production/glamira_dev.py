@@ -3,6 +3,7 @@ import sys
 sys.path.append("..")
 
 
+
 # Run the spider with the internal API of Scrapy:
 from scrapy.crawler import Crawler, CrawlerProcess
 from scrapy.utils.project import get_project_settings
@@ -57,10 +58,17 @@ custom_settings={
     "RETRY_TIMES" : 5,
     "RETRY_BACKOFF_BASE" : 1,
     "DOWNLOADER_MIDDLEWARES" : {'glamira.middlewares.CustomRetryMiddleware': 550 }  ,
-    "ITEM_PIPELINES" : {"scrapy.pipelines.images.ImagesPipeline": 1}
+    "ITEM_PIPELINES" : {"glamira.pipelines.MyImagesPipeline" : 1
+                        # "scrapy.pipelines.images.ImagesPipeline": 1
+                        
+                        ,"glamira.pipelines.transform": 2
+                        ,"glamira.pipelines.MongoPipeline": 3},
+    
+
     }
 
-
+    
+    
 
 settings = get_project_settings()
 # settings['DOWNLOAD_DELAY'] = 2
@@ -69,36 +77,50 @@ settings = get_project_settings()
 # CALL SPIDER
 crawler_apple_watch_case = Crawler(
     AppleWatchCaseSpider,
-    settings=custom_settings
-    # settings={
-    #     **settings,
-    #     "FEEDS": {
-    #         "data/apple_watch_case.json": {"format": "jsonl",  "overwrite": True},
-        
-    #     },
-
-    # },
+    # settings=custom_settings,
+    settings={
+        **custom_settings,
+        "FEEDS" : {"data/AppleWatchCaseSpider.jl" : {"format" : "jsonlines", "overwrite":False}},
+        "JOBDIR" : "crawls/AppleWatchCaseSpider",
+    },
 )
  
 crawler_rings = Crawler(
     RingSpider,
-    settings=custom_settings
+    settings={
+        **custom_settings,
+        "FEEDS" : {"data/RingSpider.jl" : {"format" : "jsonlines", "overwrite":False}},
+        "JOBDIR" : "crawls/RingSpider",
+    },
 )
 
 crawler_bracelets = Crawler(
     spidercls=BraceletsSpider,
-    settings=custom_settings
+    settings={
+        **custom_settings,
+        "FEEDS" : {"data/BraceletsSpider.jl" : {"format" : "jsonlines", "overwrite":False}},
+        "JOBDIR" : "crawls/BraceletsSpider",
+    },
 )
 
 crawler_earring = Crawler(
     EarringSpider,
-    settings=custom_settings
+    settings={
+        **custom_settings,
+        "FEEDS" : {"data/EarringSpider.jl" : {"format" : "jsonlines", "overwrite":False}},
+        "JOBDIR" : "crawls/EarringSpider",
+    },
 )
 
 crawler_necklaces = Crawler(
     NecklacesSpider,
-    settings=custom_settings
+    settings={
+        **custom_settings,
+        "FEEDS" : {"data/NecklaceSpider.jl" : {"format" : "jsonlines", "overwrite":False}},
+        "JOBDIR" : "crawls/NecklaceSpider",
+    },
 )
+
 
 
 # CHECK IF CURRENT FILE 
@@ -111,7 +133,6 @@ if __name__ == '__main__':
 
     # Run multi spider in one proccess
     process = CrawlerProcess(settings)
-    # process = CrawlerProcess(settings={**get_project_settings(), **custom_settings})
 
 
     process.crawl(crawler_apple_watch_case)

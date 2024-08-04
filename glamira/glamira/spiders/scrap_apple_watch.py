@@ -21,7 +21,7 @@ class AppleWatchCaseSpider(scrapy.Spider):
     custom_settings = {
         
         "IMAGES_STORE" : "image_folder/apple_watch",
-        "FEEDS" : {"data/AppleWatchCaseSpider.jsonl" : {"format" : "jsonl", "overwrite":True}}
+        # "FEEDS" : {"data/AppleWatchCaseSpider.jl" : {"format" : "jsonlines", "overwrite":True}}
     }
 
 
@@ -65,28 +65,6 @@ class AppleWatchCaseSpider(scrapy.Spider):
             real_image = each.split(' ')[2]
             images_list.append(real_image)
 
-
-        # yield {
-        #     # General information
-        #     'page_link' : self.page_request ,
-        #     'product_link': response.request.url,
-        #     'product_name' :  response.css('.base::text').get(),
-        #     'price' :  response.css('.price::text').get(),  
-        #     'product_img' : images_list,
-
-        #     # Customize property by product type
-        #     'product_description' : response.css('.product-description::text').get(),
-        #     'product_no' :  response.css('#product-detail-container .detail-value span::text').getall()[0],
-        #     'case' : response.css('#product-detail-container .detail-value span::text').getall()[1],
-        #     'bracelet' : response.css('#product-detail-container .detail-value span::text').getall()[2],
-        #     'case_thickness_mm' : response.css('#product-detail-container .detail-value span::text').getall()[3],
-        #     'case_size' : response.css('#product-detail-container .detail-value span::text').getall()[4],
-        #     'wrist_size' : response.css('#product-detail-container .detail-value span::text').getall()[5],
-        #     'metal_weight_gr' : response.css('#product-detail-container .detail-value span::text').getall()[6],
-        #     'compatibility' : response.css('#product-detail-container .detail-value span::text').getall()[7],
-            
-
-        # }
         AppleWatchCase_item['product_link'] =  response.request.url
         AppleWatchCase_item['page_link'] = self.page_request 
         

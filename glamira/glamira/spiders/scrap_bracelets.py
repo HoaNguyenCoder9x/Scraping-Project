@@ -21,7 +21,7 @@ class BraceletsSpider(scrapy.Spider):
     custom_settings = {
         
         "IMAGES_STORE" : "image_folder/BraceletsSpider",
-        "FEEDS" : {"data/BraceletsSpider.jsonl" : {"format" : "jsonl", "overwrite":True}}
+        # "FEEDS" : {"data/BraceletsSpider.jsonl" : {"format" : "jsonl", "overwrite":True}}
     }
  
 
@@ -64,28 +64,6 @@ class BraceletsSpider(scrapy.Spider):
             real_image = each.split(' ')[2]
             images_list.append(real_image)
 
-
-        # yield {
-        #     # General information
-        #     'page_link' : self.page_request ,
-        #     'product_link': response.request.url,
-        #     'product_name' :  response.css('.base::text').get(),
-        #     'price' :  response.css('.price::text').get(),  
-        #     'product_img' : images_list,
-
-        #     # Customize property by product type
-        #     'product_description' : response.css('.product-description::text').get(),
-        #     'product_no' :  response.css('#product-detail-container .detail-value span::text').getall()[0],
-        #     'case' : response.css('#product-detail-container .detail-value span::text').getall()[1],
-        #     'bracelet' : response.css('#product-detail-container .detail-value span::text').getall()[2],
-        #     'case_thickness_mm' : response.css('#product-detail-container .detail-value span::text').getall()[3],
-        #     'case_size' : response.css('#product-detail-container .detail-value span::text').getall()[4],
-        #     'wrist_size' : response.css('#product-detail-container .detail-value span::text').getall()[5],
-        #     'metal_weight_gr' : response.css('#product-detail-container .detail-value span::text').getall()[6],
-        #     'compatibility' : response.css('#product-detail-container .detail-value span::text').getall()[7],
-            
-
-        # }
         BraceletsSpider_item['image_urls'] = images_list
         BraceletsSpider_item['page_link'] = self.page_request 
         BraceletsSpider_item['product_link'] =  response.request.url
@@ -97,8 +75,6 @@ class BraceletsSpider(scrapy.Spider):
         BraceletsSpider_item['center_stone'] = response.css('.detail-value span.Stone::text').get()
         
 
-        # BraceletsSpider_item['chain'] = response.css('#product-detail-container .value::text').getall()[15]
-        
      
               
         yield BraceletsSpider_item

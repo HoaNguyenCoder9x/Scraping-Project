@@ -11,7 +11,17 @@ BOT_NAME = "glamira"
 
 SPIDER_MODULES = ["glamira.spiders"]
 NEWSPIDER_MODULE = "glamira.spiders"
-# ITEM_PIPELINES = {"scrapy.pipelines.images.ImagesPipeline": 1}
+
+ITEM_PIPELINES = {
+    # "scrapy.pipelines.images.ImagesPipeline" : 1,
+    "glamira.pipelines.MyImagesPipeline" : 1 ,
+    "glamira.pipelines.transform": 2,
+    
+   "glamira.pipelines.MongoPipeline": 3,
+
+}
+
+MONGO_URI= 'mongodb://localhost:27017'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -93,9 +103,7 @@ AUTOTHROTTLE_ENABLED = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "glamira.pipelines.GlamiraPipeline": 300,
-#}
+
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

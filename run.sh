@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# Python 3.10.12
 # Check if a Python interpreter is provided, otherwise default to 'python3'
 PYTHON=${1:-python3}
 

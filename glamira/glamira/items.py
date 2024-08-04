@@ -24,6 +24,8 @@ class AppleWatchCaseSpider_Item(Item):
     wrist_size = Field()
     metal_weight_gr = Field()
     compatibility = Field()
+    category = Field()
+
 
 class RingSpider_Item(Item):
     image_urls = Field()
@@ -36,9 +38,7 @@ class RingSpider_Item(Item):
     
     product_no = Field()
     center_stone = Field()
-    # stone_shape = Field()
-    # stone_total_carat = Field()
-    # center_stone_diameter = Field()
+    category = Field()
      
 class Necklaces_Item(Item):
     image_urls = Field()
@@ -51,7 +51,8 @@ class Necklaces_Item(Item):
     
     product_no = Field()
     center_stone = Field()
-    chain = Field()
+    # chain = Field()
+    category = Field()
 
 
 
@@ -67,7 +68,7 @@ class Earring_Item(Item):
     product_no = Field()
     center_stone = Field()
     stone_color_metal = Field()
-        
+    category = Field()       
 
 class BraceletsSpider_Item(Item):
     image_urls = Field()
@@ -80,3 +81,4 @@ class BraceletsSpider_Item(Item):
     
     product_no = Field()
     center_stone = Field()
+    category = Field()
