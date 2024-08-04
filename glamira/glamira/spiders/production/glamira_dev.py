@@ -58,8 +58,8 @@ custom_settings={
     "RETRY_TIMES" : 5,
     "RETRY_BACKOFF_BASE" : 1,
     "DOWNLOADER_MIDDLEWARES" : {'glamira.middlewares.CustomRetryMiddleware': 550 }  ,
-    "ITEM_PIPELINES" : {"glamira.pipelines.MyImagesPipeline" : 1
-                        # "scrapy.pipelines.images.ImagesPipeline": 1
+    "ITEM_PIPELINES" : {"scrapy.pipelines.images.ImagesPipeline": 1 
+                        # "glamira.pipelines.MyImagesPipeline" : 1
                         
                         ,"glamira.pipelines.transform": 2
                         ,"glamira.pipelines.MongoPipeline": 3},
